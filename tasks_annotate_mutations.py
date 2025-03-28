@@ -410,7 +410,7 @@ class SpTransformerDriver(ModelDriver):
                               max_seq_len=8192, attn_depth=8, training=False)
         save_dict = torch.load(
             './model/weights/SpTransformer_pytorch.ckpt', map_location='cpu')
-        model.load_state_dict(save_dict["state_dict"])
+        model.load_state_dict(save_dict["state_dict"], strict=False)
         models = [model]
         super().__init__(ref_fasta, models, load_db)
 
