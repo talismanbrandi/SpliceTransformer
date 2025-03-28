@@ -49,6 +49,11 @@ git clone https://github.com/ShenLab-Genomics/SpliceTransformer.git
 
 Download the [model weights](https://drive.google.com/file/d/1d8n4vHDSbXqpPc_JFEswLomSUDBgHvno/view?usp=drive_link)
 
+```bash
+cd model/weights
+sh get_model_weights.sh
+```
+
 ## 2. Install dependencies
 
 Please see the **Software Dependencies** section.
@@ -70,7 +75,7 @@ It should be compatible with other common Linux systems.
 
 ## Software Dependencies
 
-- Python 3.8
+- Python>=3.8
 - numpy
 - pandas
 - pytorch>=1.10.2
@@ -86,16 +91,22 @@ We suggest using `Anaconda` and `pypi` to install python packages. **bioconda** 
 Example:
 
 ```
-conda create -n spt-test python==3.8 numpy pandas gffutils tqdm pytorch pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 -c pytorch -c conda-forge -c bioconda
+conda env create -n spt --file environment.yml
 
-conda activate spt-test
+conda activate spt
 
-pip install sinkhorn-transformer pyfaidx pyvcf3 pyensembl
 ```
 
 ## Dataset Requirements
 
 The SpliceTransformer requires a genome assembly file and a genome annotation database file to locate genes and strands.
+
+```bash
+cd data/data_package
+sh get_genome_annotation.sh
+```
+
+The above will get all the files and build the index. The following will be done by the shell script
 
 (1) Download the genome assembly file from Ensemble.
 <https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz>
